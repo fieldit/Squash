@@ -40,21 +40,7 @@
             }
 
             function getStartTime() {
-                const startTimeParam = urlParams.get('startTime'); // e.g., "08:30"
-
-                if (startTimeParam) {
-                    const parts = startTimeParam.split(':');
-                    if (parts.length === 2) {
-                        const hours = parseInt(parts[0], 10);
-                        const minutes = parseInt(parts[1], 10);
-
-                        if (!isNaN(hours) && !isNaN(minutes)) {
-                            return { hours, minutes };
-                        }
-                    }
-                }
-                // Default start time if parameter is not provided or invalid
-                return { hours: 7, minutes: 0 };
+                return { hours: 7, minutes: 20 };
             }
 
             function updateCountdown() {
