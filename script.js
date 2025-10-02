@@ -52,9 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Calculate the milliseconds remaining in the current interval.
         const millisRemaining = intervalMilliseconds - millisIntoInterval;
 
-        // Convert remaining milliseconds to minutes for display.
-        const totalSeconds = Math.floor(millisRemaining / 1000);
-        const minutes = Math.floor(totalSeconds / 60);
+        // Convert remaining milliseconds to minutes for display, rounding up.
+        const minutes = Math.ceil(millisRemaining / (60 * 1000));
 
         // Update the display to show only the minutes.
         countdownElement.textContent = String(minutes);
