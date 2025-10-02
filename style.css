@@ -6,6 +6,15 @@ body, html {
     align-items: center;
     background-color: #000;
     font-family: 'Arial', sans-serif;
+    position: relative; /* Needed for absolute positioning of children */
+}
+
+#logo {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    height: auto; /* Maintain aspect ratio */
 }
 
 #countdown {
