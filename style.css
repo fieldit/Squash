@@ -1,0 +1,15 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+}
+
+#countdown {
+    font-size: 50vw;
+    font-weight: bold;
+    color: yellow;
+}
