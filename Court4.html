@@ -39,7 +39,23 @@
                 }
             }
 
+            const originalColor = countdownElement.style.color || 'yellow';
+
             function getStartTime() {
+                const startTimeParam = urlParams.get('startTime'); // e.g., "08:30"
+
+                if (startTimeParam) {
+                    const parts = startTimeParam.split(':');
+                    if (parts.length === 2) {
+                        const hours = parseInt(parts[0], 10);
+                        const minutes = parseInt(parts[1], 10);
+
+                        if (!isNaN(hours) && !isNaN(minutes)) {
+                            return { hours, minutes };
+                        }
+                    }
+                }
+                // Default start time if parameter is not provided or invalid
                 return { hours: 7, minutes: 35 };
             }
 
@@ -66,11 +82,18 @@
                 // Calculate the milliseconds remaining in the current interval.
                 const millisRemaining = intervalMilliseconds - millisIntoInterval;
 
-                // Convert remaining milliseconds to minutes for display, rounding up.
-                const minutes = Math.ceil(millisRemaining / (60 * 1000));
-
-                // Update the display to show only the minutes.
-                countdownElement.textContent = String(minutes);
+                const oneMinute = 60 * 1000;
+                if (millisRemaining <= oneMinute) {
+                    // When 1 minute or less is remaining, show seconds in red.
+                    const seconds = Math.ceil(millisRemaining / 1000);
+                    countdownElement.textContent = String(seconds);
+                    countdownElement.style.color = 'red';
+                } else {
+                    // Otherwise, show minutes in the original color.
+                    const minutes = Math.ceil(millisRemaining / (60 * 1000));
+                    countdownElement.textContent = String(minutes);
+                    countdownElement.style.color = originalColor;
+                }
             }
 
             // Run the update function every second.
